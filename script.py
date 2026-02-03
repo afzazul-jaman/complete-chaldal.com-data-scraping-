@@ -22,7 +22,7 @@ driver = webdriver.Chrome(
 
 # ecommerce site URL
 driver.get("https://chaldal.com")
-time.sleep(5)  # page load wait
+time.sleep(5)   
 
 print("\n[INFO] Scraping first category only...\n")
 
@@ -37,8 +37,8 @@ if not categories:
 # take the first category
 first_category = categories[0]
 cat_name = first_category.text.strip()
-print(f"[INFO] First category: {cat_name}\n")
-# ------------------- START MULTI-CATEGORY LOOP -------------------
+print(f"[INFO] First category: {cat_name}\n") 
+
 categories = driver.find_elements(By.CLASS_NAME, "category-name")
 total_categories = len(categories)
 print(f"[INFO] Total categories found: {total_categories}")
@@ -62,9 +62,7 @@ for c_index in range(total_categories):
     product_cards = driver.find_elements(By.CLASS_NAME, "productV2Catalog")
     total_cards = len(product_cards)
 
-    # check for sub-categories if no products found
-    # check for sub-categories if no products found
-    # after finding product_cards
+
     if len(product_cards) == 0:
         # 0 product → check for subcategories
         subcats = driver.find_elements(By.CLASS_NAME, "category-name")
@@ -86,9 +84,7 @@ for c_index in range(total_categories):
             # check for products in subcategory
             product_cards = driver.find_elements(By.CLASS_NAME, "productV2Catalog")
             if len(product_cards) == 0:
-                # recursive-ish → aro subcategories thakle ei same block run korte pare
-                # ekdom serial, ekta kore
-                # queue logic or for-loop diye abar same block
+                
                 continue
 
                 # ager moto scraping logic start
